@@ -15,7 +15,7 @@ Building
 1 - Install [VigemBus](https://github.com/nefarius/ViGEmBus/releases) (required) and [HidHide](https://github.com/nefarius/HidHide) (optional)<br>
 2 - Install Python and add it to the PATH<br>
 3 - Install modules by typing "pip install pyinstaller", "pip install pygame" and "pip install vgamepad" into a PowerShell terminal.<br>
-4 - Open the path where the file exists in PowerShell and type "pyinstaller --onefile ds4-to-xinput.py"<br>
+4 - Open the path where the file exists in PowerShell and type "pyinstaller --onefile --collect-all vgamepad ds4-to-xinput.py"<br>
 5 - After that is done enter dist folder and run the exe
 
 How to use HidHide (optional)
