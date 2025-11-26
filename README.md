@@ -20,7 +20,7 @@ Building
 
 How to use HidHide (optional)
 
-1 - Install HidHide and open the program
-2 - On applications page add the ds4-to-xinput.exe
-3 - Click on devices page and find your controller not the virtual one
+1 - Install HidHide and open the program<br>
+2 - On applications page add the ds4-to-xinput.exe<br>
+3 - Click on devices page and find your controller not the virtual one<br>
 4 - Select your controller and click "Enable device hiding"
