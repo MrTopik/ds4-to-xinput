@@ -10,16 +10,16 @@ DS4_TO_XINPUT = {
     1: vg.XUSB_BUTTON.XUSB_GAMEPAD_B,      # Circle
     2: vg.XUSB_BUTTON.XUSB_GAMEPAD_X,      # Square
     3: vg.XUSB_BUTTON.XUSB_GAMEPAD_Y,      # Triangle
-    4: vg.XUSB_BUTTON.XUSB_GAMEPAD_BACK,
-    6: vg.XUSB_BUTTON.XUSB_GAMEPAD_START,
-    9: vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_SHOULDER,
-    10: vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER,
-    7: vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_THUMB,
-    8: vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_THUMB,
-    12: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_DOWN,
-    13: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_LEFT,
-    14: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_RIGHT,
-    11: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_UP
+    4: vg.XUSB_BUTTON.XUSB_GAMEPAD_BACK,    # Share
+    6: vg.XUSB_BUTTON.XUSB_GAMEPAD_START,    # Options
+    9: vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_SHOULDER,    #L1
+    10: vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER,    #R1
+    7: vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_THUMB,    #L3
+    8: vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_THUMB,    #R3
+    12: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_DOWN,    #D-Pad Down
+    13: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_LEFT,    #D-Pad Left
+    14: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_RIGHT,    #D-Pad Right
+    11: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_UP    #D-Pad Up
 }
 
 lx = ly = rx = ry = 0.0
@@ -54,14 +54,14 @@ if pygame.joystick.get_count() > 0:
 
             #AXIS translation
             elif event.type == pygame.JOYAXISMOTION:
-                if event.axis == 0:          # left X
+                if event.axis == 0:          # left X - Left joystick horizontal
                     lx = clamp(event.value, MIN_AXIS_LIMIT, MAX_AXIS_LIMIT)
-                elif event.axis == 1:        # left Y
+                elif event.axis == 1:        # left Y - Left joystick vertical
                     ly = -event.value
                     ly = clamp(ly, MIN_AXIS_LIMIT, MAX_AXIS_LIMIT)
-                elif event.axis == 2:        # right X
+                elif event.axis == 2:        # right X - Right joystick horizontal
                     rx = clamp(event.value, MIN_AXIS_LIMIT, MAX_AXIS_LIMIT)
-                elif event.axis == 3:        # right Y
+                elif event.axis == 3:        # right Y - Right joystick vertical
                     ry = -event.value
                     ry = clamp(ry, MIN_AXIS_LIMIT, MAX_AXIS_LIMIT)
                 elif event.axis == 5:  # R2
@@ -81,3 +81,4 @@ if pygame.joystick.get_count() > 0:
     pygame.quit()
 else:
     input("\nNo gamepad found. Press Enter to close...")
+
