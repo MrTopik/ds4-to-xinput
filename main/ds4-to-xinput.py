@@ -1,26 +1,67 @@
 import pygame
 import vgamepad as vg
 import math
+import json
+import os
+
+MAPPING_FILE = 'ds4_mapping.json'
+
+DEFAULT_MAPPING = {
+    "0": "XUSB_GAMEPAD_A",            # Cross
+    "1": "XUSB_GAMEPAD_B",            # Circle
+    "2": "XUSB_GAMEPAD_X",            # Square
+    "3": "XUSB_GAMEPAD_Y",            # Triangle
+    "4": "XUSB_GAMEPAD_BACK",         # Share
+    "6": "XUSB_GAMEPAD_START",        # Options
+    "9": "XUSB_GAMEPAD_LEFT_SHOULDER",# L1
+    "10": "XUSB_GAMEPAD_RIGHT_SHOULDER",# R1
+    "7": "XUSB_GAMEPAD_LEFT_THUMB",   # L3
+    "8": "XUSB_GAMEPAD_RIGHT_THUMB",  # R3
+    "12": "XUSB_GAMEPAD_DPAD_DOWN",   # D-Pad Down
+    "13": "XUSB_GAMEPAD_DPAD_LEFT",   # D-Pad Left
+    "14": "XUSB_GAMEPAD_DPAD_RIGHT",  # D-Pad Right
+    "11": "XUSB_GAMEPAD_DPAD_UP"      # D-Pad Up
+}
+
+def load_mapping():
+    if os.path.exists(MAPPING_FILE):
+        try:
+            print(f"Loading mapping from {MAPPING_FILE}...")
+            with open(MAPPING_FILE, 'r') as f:
+                raw_mapping = json.load(f)
+        except (IOError, json.JSONDecodeError) as e:
+            print(f"Error loading/decoding {MAPPING_FILE} ({e}). Creating default file.")
+            raw_mapping = DEFAULT_MAPPING
+            write_mapping(raw_mapping)
+    else:
+        print(f"Mapping file {MAPPING_FILE} not found. Creating default file.")
+        raw_mapping = DEFAULT_MAPPING
+        write_mapping(raw_mapping)
+        
+    try:
+        DS4_TO_XINPUT = {
+            int(k): getattr(vg.XUSB_BUTTON, v) 
+            for k, v in raw_mapping.items() 
+            if hasattr(vg.XUSB_BUTTON, v) 
+        }
+        if len(DS4_TO_XINPUT) < len(DEFAULT_MAPPING):
+            print("Warning: Some mapping entries were invalid or missing in the file.")
+            
+        return DS4_TO_XINPUT
+        
+    except ValueError as e:
+        print(f"Error: Non-integer key found in mapping file. Please check {MAPPING_FILE}.")
+        return {int(k): getattr(vg.XUSB_BUTTON, v) for k, v in DEFAULT_MAPPING.items()}
+        
+
+def write_mapping(mapping_data):
+    with open(MAPPING_FILE, 'w') as f:
+        json.dump(mapping_data, f, indent=4)
 
 pygame.init()
 pygame.joystick.init()
 
-DS4_TO_XINPUT = {
-    0: vg.XUSB_BUTTON.XUSB_GAMEPAD_A,      # Cross
-    1: vg.XUSB_BUTTON.XUSB_GAMEPAD_B,      # Circle
-    2: vg.XUSB_BUTTON.XUSB_GAMEPAD_X,      # Square
-    3: vg.XUSB_BUTTON.XUSB_GAMEPAD_Y,      # Triangle
-    4: vg.XUSB_BUTTON.XUSB_GAMEPAD_BACK,    # Share
-    6: vg.XUSB_BUTTON.XUSB_GAMEPAD_START,    # Options
-    9: vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_SHOULDER,    #L1
-    10: vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER,    #R1
-    7: vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_THUMB,    #L3
-    8: vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_THUMB,    #R3
-    12: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_DOWN,    #D-Pad Down
-    13: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_LEFT,    #D-Pad Left
-    14: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_RIGHT,    #D-Pad Right
-    11: vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_UP    #D-Pad Up
-}
+DS4_TO_XINPUT = load_mapping()
 
 lx = ly = rx = ry = 0.0
 MIN_AXIS_LIMIT = -1.0
