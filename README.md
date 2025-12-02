@@ -1,8 +1,7 @@
 # ds4-to-xinput
 DualShock 4 to XInput with pygame and VigemBus
 
-This program does not let you configure buttons in a simple way, I made it to just work and I don't plan to add any features.<br>
-You can change the buttons if you change the code itself and then build it.
+You can edit the JSON file in Notepad to change the mapping.
 
 Installation
 
