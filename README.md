@@ -20,7 +20,10 @@ pip install pygame
 pip install vgamepad
 ```
 into a PowerShell terminal.<br>
-4 - Open the path where the file exists in PowerShell and type "pyinstaller --onefile --collect-all vgamepad ds4-to-xinput.py"<br>
+4 - Open the path where the file exists in PowerShell and type
+```
+pyinstaller --onefile --collect-all vgamepad ds4-to-xinput.py"
+```
 5 - After that is done enter dist folder and run the exe
 
 How to use HidHide (optional)
