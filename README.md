@@ -1,4 +1,4 @@
-# ds4-to-xinput
+### ds4-to-xinput
 DualShock 4 to XInput with pygame and VigemBus
 
 You can edit the JSON file in Notepad to change the mapping.
@@ -22,7 +22,7 @@ pip install vgamepad
 into a PowerShell terminal.<br>
 4 - Open the path where the file exists in PowerShell and type
 ```
-pyinstaller --onefile --collect-all vgamepad ds4-to-xinput.py"
+pyinstaller --onefile --collect-all vgamepad ds4-to-xinput.py
 ```
 5 - After that is done enter dist folder and run the exe
 
