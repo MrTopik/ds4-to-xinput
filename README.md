@@ -1,5 +1,5 @@
-### ds4-to-xinput
-## This program only works with Windows!
+## ds4-to-xinput
+# This program only works with Windows!
 DualShock 4 to XInput with pygame and VigemBus
 
 You can edit the JSON file in Notepad to change the mapping.
