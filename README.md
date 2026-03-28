@@ -4,13 +4,13 @@ DualShock 4 to XInput with pygame and VigemBus
 
 You can edit the JSON file in Notepad to change the mapping.
 
-Installation
+### Installation
 
 1 - Install [VigemBus](https://github.com/nefarius/ViGEmBus/releases)<br>
 2 - Install [HidHide](https://github.com/nefarius/HidHide) if the game detects your controller but you want to use the virtual one.<br>
 3 - Run the file and it is done
 
-Building
+### Building
 
 1 - Install [VigemBus](https://github.com/nefarius/ViGEmBus/releases) (required) and [HidHide](https://github.com/nefarius/HidHide) (optional)<br>
 2 - Install Python and add it to the PATH<br>
@@ -27,7 +27,7 @@ pyinstaller --onefile --collect-all vgamepad ds4-to-xinput.py
 ```
 5 - After that is done enter dist folder and run the exe
 
-How to use HidHide (optional)
+### How to use HidHide (optional)
 
 1 - Install HidHide and open the program<br>
 2 - On applications page add the ds4-to-xinput.exe<br>
