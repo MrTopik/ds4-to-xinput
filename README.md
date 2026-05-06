@@ -8,7 +8,8 @@ You can edit the JSON file in Notepad to change the mapping.
 
 1 - Install [VigemBus](https://github.com/nefarius/ViGEmBus/releases)<br>
 2 - Install [HidHide](https://github.com/nefarius/HidHide) if the game detects your controller but you want to use the virtual one.<br>
-3 - Run the file and it is done
+3 - Run the ds4-to-xinput.exe and it is done 
+Optional - Edit the JSON file created in the same directory to edit the button layout.
 
 ### Building
 
